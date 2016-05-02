@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body class="container-fluid">
+    <!--Header-->
+    <% if(user){ %>
+        <% include templates/userHeader.html %>
+    <% }else{ %>
+        <% include templates/nonUserHeader.html %>
+    <% } %>
+    <!--End Header-->
+    <div class="container">
+        <h1><%= title %></h1>
+        <p><%= message %></p>
+        <div class="row">
+            <div class="col-md-8 col-sm-12 fotorama" id="display_images">
+                <% console.log(images); %>
+                <% for(var i=0; i < images.length; i++) {%>
+                    <img width="100px" height="100px" src="/<%= images[i] %>">
+                <% } %>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h3>Try to upload an image..</h3>
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" id="file_upload" name="file_upload" class="input_file" onchange="previewImage(this)"/><label for="file_upload" class="btn btn-primary">New Image</label>
+                    <input type="submit" id="file_upload_submit" name="file_upload_submit" class="input_file" onclick="newImage(event, this)"/><label for="file_upload_submit" class="btn btn-primary">Submit</label>
+                </form>
+                <img id="file_upload_preview" src=""/>
+            </div>
+        </div>
+    </div>
+    <!--Script imports-->
+    <script src="/javascripts/jquery-1.12.3.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="/javascripts/upload.js"></script>
+</body>
+</html>

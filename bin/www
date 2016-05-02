@@ -1,0 +1,179 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('Express_Practice:server');
+var http = require('http');
+var log =  require('../logger');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+// attach http to socketIO
+app.io.attach(server);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port, '0.0.0.0');
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  log.info('Listening on ' + bind);
+}
+
+
+
+//var ftpd = require('ftpd');
+//var fs = require('fs');
+//var path = require('path');
+//var keyFile;
+//var certFile;
+//var ftpserver;
+//process.env.KEY_FILE = 'key';
+//process.env.CERT_FILE = 'key';
+//var options = {
+//  host: process.env.IP || '127.0.0.1',
+//  port: process.env.PORT || 7002,
+//  tls: null
+//};
+//
+//if (process.env.KEY_FILE && process.env.CERT_FILE) {
+//  console.log('Running as FTPS server');
+//  if (process.env.KEY_FILE.charAt(0) !== '/') {
+//    keyFile = path.join(__dirname, process.env.KEY_FILE);
+//  }
+//  if (process.env.CERT_FILE.charAt(0) !== '/') {
+//    certFile = path.join(__dirname, process.env.CERT_FILE);
+//  }
+//  //options.tls = {
+//  //  key: fs.readFileSync(keyFile),
+//  //  cert: fs.readFileSync(certFile),
+//  //  ca: !process.env.CA_FILES ? null : process.env.CA_FILES
+//  //      .split(':')
+//  //      .map(function(f) {
+//  //        return fs.readFileSync(f);
+//  //      })
+//  //};
+//} else {
+//  console.log();
+//  console.log('*** To run as FTPS server,                 ***');
+//  console.log('***  set "KEY_FILE", "CERT_FILE"           ***');
+//  console.log('***  and (optionally) "CA_FILES" env vars. ***');
+//  console.log();
+//}
+//
+//ftpserver = new ftpd.FtpServer(options.host, {
+//  getInitialCwd: function() {
+//    return '/';
+//  },
+//  getRoot: function() {
+//    return process.cwd();
+//  },
+//  pasvPortRangeStart: 1025,
+//  pasvPortRangeEnd: 1050,
+//  tlsOptions: options.tls,
+//  allowUnauthorizedTls: true,
+//  useWriteFile: false,
+//  useReadFile: false,
+//  uploadMaxSlurpSize: 7000 // N/A unless 'useWriteFile' is true.
+//});
+//
+//ftpserver.on('error', function(error) {
+//  console.log('FTP Server error:', error);
+//});
+//
+//ftpserver.on('client:connected', function(connection) {
+//  var username = null;
+//  console.log('client connected: ' + connection.remoteAddress);
+//  connection.on('command:user', function(user, success, failure) {
+//    if (user) {
+//      username = user;
+//      success();
+//    } else {
+//      failure();
+//    }
+//  });
+//
+//  connection.on('command:pass', function(pass, success, failure) {
+//    if (pass) {
+//      success(username);
+//    } else {
+//      failure();
+//    }
+//  });
+//});
+//
+//ftpserver.debugging = 4;
+//ftpserver.listen(options.port);
+//console.log('Listening on port ' + options.port);

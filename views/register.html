@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="container-fluid" id="body-container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-8 col-md-offset-4 col-xs-offset-2">
+            <div id="login-div">
+                <h2>Registration</h2>
+                <form method="post" action="/register">
+                    <p><input type="text" class="form-control" name="user_name" value="" placeholder="User Name" required></p>
+                    <p><input type="password" class="form-control" name="password" value="" placeholder="Password" required></p>
+                    <p><input type="text" class="form-control" name="first_name" value="" placeholder="First Name" required></p>
+                    <p><input type="text" class="form-control" name="last_name" value="" placeholder="Last Name" required></p>
+                    <p><input type="email" class="form-control" name="email_addr" value="" placeholder="Email Address"></p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <input type="submit" class="btn btn-primary btn-block" value="Register">
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <a href="/"><button type="button" class="btn btn-primary btn-block">Login</button></a>
+                        </div>
+                    </div>
+                    <p><%= message %></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Script imports-->
+<script src="/javascripts/jquery-1.12.3.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+<script src="/javascripts/upload.js"></script>
+</body>
+</html>

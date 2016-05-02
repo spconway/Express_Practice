@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<!--Header-->
+<% if(user){ %>
+    <% include templates/userHeader.html %>
+<% }else{ %>
+    <% include templates/nonUserHeader.html %>
+<% } %>
+<!--End Header-->
+<div class="container-fluid" id="body-container">
+    <div class="row">
+        <div class="col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1">
+            <div id="messages-wrapper">
+                <ul id="messages"></ul>
+                <form action="">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input class="form-control" id="m" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-primary btn-block">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Script imports-->
+<script src="/javascripts/jquery-1.12.3.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/socketio.js"></script>
+</body>
+</html>

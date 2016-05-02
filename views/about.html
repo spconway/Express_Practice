@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body class="container-fluid">
+    <!--Header-->
+    <% if(user){ %>
+        <% include templates/userHeader.html %>
+    <% }else{ %>
+        <% include templates/nonUserHeader.html %>
+    <% } %>
+    <!--End Header-->
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <br>
+    <br>
+    <h2>Coded by: <%= developer %></h2>
+    <!--Script imports-->
+    <script src="/javascripts/jquery-1.12.3.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+</body>
+</html>

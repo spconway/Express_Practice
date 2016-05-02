@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%=title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="container-fluid" id="body-container">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-8 col-md-offset-4 col-xs-offset-2">
+            <div id="login-div">
+                <h2>Welcome please login</h2>
+                <form method="post" action="/">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="login" value="" placeholder="Username" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" value="" placeholder="Password" required="">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <input type="submit" class="btn btn-primary btn-block" name="commit" value="Login">
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <a href="/register"><button type="button" class="btn btn-primary btn-block">Register</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <label id="remember-me">
+                                    <input type="checkbox" name="remember_me" id="remember_me">
+                                    Remember me on this computer
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <p><%=message %></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Script imports-->
+<script src="/javascripts/jquery-1.12.3.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+</body>
+</html>

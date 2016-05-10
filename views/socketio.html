@@ -6,27 +6,30 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
-<body>
+<body class="container-fluid">
 <!--Header-->
 <% if(user){ %>
+    <script type='text/javascript'>
+        var curUser =<%-JSON.stringify(user)%>
+    </script>
     <% include templates/userHeader.html %>
 <% }else{ %>
     <% include templates/nonUserHeader.html %>
 <% } %>
 <!--End Header-->
-<div class="container-fluid" id="body-container">
+<div class="container" id="body-container">
     <div class="row">
         <div class="col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1">
-            <div id="messages-wrapper">
-                <ul id="messages"></ul>
+            <div id="messageList-wrapper">
+                <div id="messageList"></div>
                 <form action="">
                     <div class="form-group">
-                        <div class="row">
+                        <div class="row" id="messageList-form">
                             <div class="col-md-10">
-                                <input class="form-control" id="m" autocomplete="off" />
+                                <input class="form-control" id="messageInput" autocomplete="off" />
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-primary btn-block">Send</button>
+                                <button  class="btn btn-primary btn-block">Send</button>
                             </div>
                         </div>
                     </div>
